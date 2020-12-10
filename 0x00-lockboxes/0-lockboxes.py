@@ -6,6 +6,10 @@
 
 
 def canUnlockAll(boxes):
+
+    if not boxes:
+        return False
+
     open_boxes = [0] * len(boxes)  # creates and set the list of integers in 0
     open_boxes[0] = 1
     open_boxes = recursion(boxes, boxes[0], open_boxes)
