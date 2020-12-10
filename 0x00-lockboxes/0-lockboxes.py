@@ -7,8 +7,12 @@
 
 def canUnlockAll(boxes):
 
-    if not boxes:
-        return False
+    if not boxes or type(boxes) != list:
+        return
+
+    for item in boxes:
+        if type(item) != list:
+            return
 
     open_boxes = [0] * len(boxes)  # creates and set the list of integers in 0
     open_boxes[0] = 1
