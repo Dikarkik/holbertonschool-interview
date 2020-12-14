@@ -12,7 +12,8 @@ int main(void)
 {
     listint_t *head;
 
-    head = NULL;
+	printf("/////////////////////////////////////////\n");
+	head = NULL;
     add_nodeint_end(&head, 0);
     add_nodeint_end(&head, 1);
     add_nodeint_end(&head, 2);
@@ -22,14 +23,59 @@ int main(void)
     add_nodeint_end(&head, 402);
     add_nodeint_end(&head, 1024);
     print_listint(head);
-
-    printf("-----------------\n");
-
+    printf("-------------after insertion--------------\n");
     insert_node(&head, 27);
-
     print_listint(head);
-
     free_listint(head);
 
-    return (0);
+
+	printf("\n\n/////////////////////////////////////////\n");
+	head = NULL;
+	print_listint(head);
+	printf("-------------after insertion--------------\n");
+	insert_node(&head, 27);
+	print_listint(head);
+	free_listint(head);
+
+	printf("\n\n/////////////////////////////////////////\n");
+	head = NULL;
+	add_nodeint_end(&head, 0);
+	add_nodeint_end(&head, 1);
+	print_listint(head);
+	printf("-------------after insertion--------------\n");
+	insert_node(&head, -1);
+	print_listint(head);
+	free_listint(head);
+
+	printf("\n\n/////////////////////////////////////////\n");
+	head = NULL;
+	add_nodeint_end(&head, 0);
+	add_nodeint_end(&head, 1);
+	print_listint(head);
+	printf("-------------after insertion--------------\n");
+	insert_node(&head, 2);
+	print_listint(head);
+	free_listint(head);
+
+	printf("\n\n/////////////////////////////////////////\n");
+	head = NULL;
+	add_nodeint_end(&head, 0);
+	add_nodeint_end(&head, 1);
+	print_listint(head);
+	printf("-------------after insertion--------------\n");
+	insert_node(&head, 1);
+	print_listint(head);
+	free_listint(head);
+
+	printf("\n\n/////////////////////////////////////////\n");
+	head = NULL;
+	add_nodeint_end(&head, 0);
+	add_nodeint_end(&head, 1);
+	print_listint(head);
+	printf("-------------after insertion--------------\n");
+	insert_node(&head, 0);
+	print_listint(head);
+	free_listint(head);
+
+	return (0);
 }
