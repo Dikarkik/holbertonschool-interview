@@ -1,22 +1,22 @@
 #!/usr/bin/python3
 
 def minOperations(n):
-	count = 0
-	len = 1
-	to_add = 1
+	len = 1 # "H"
+	operations = 0
+	copy = 0
 
 	while (len <= n):
 
 		if (len == n):
-			return count
+			return operations
 
 		# "Copy All"
 		if (n % len == 0):
-			to_add = len
-			count += 1
+			copy = len
+			operations += 1
 
 		# "Paste"
-		len = len + to_add
-		count += 1
+		len = len + copy
+		operations += 1
 
 	return 0
