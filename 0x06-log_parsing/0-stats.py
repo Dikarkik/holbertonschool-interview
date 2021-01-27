@@ -31,21 +31,22 @@ def print_metrics():
 """
 Read stdin
 """
-try:
+if __name__ == "__main__":
 
-    for line in sys.stdin:
+    try:
+        for line in sys.stdin:
 
-        total_size += int(line.split()[8])
+            total_size += int(line.split()[8])
 
-        status_code[line.split()[7]] += 1
+            status_code[line.split()[7]] += 1
 
-        # print metrics every 10 lines
-        if (count % 10 == 0):
-            print_metrics()
+            # print metrics every 10 lines
+            if (count % 10 == 0):
+                print_metrics()
 
-        count += 1
+            count += 1
 
-except KeyboardInterrupt:
+    except KeyboardInterrupt:
 
-    print_metrics()
-    sys.exit(0)
+        print_metrics()
+        sys.exit(0)
