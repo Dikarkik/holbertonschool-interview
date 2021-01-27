@@ -8,7 +8,6 @@ excecute: ./0-generator.py | ./0-stats.py
 """
 import sys
 
-
 count = 1
 total_size = 0
 status_code = {'200': 0, '301': 0, '400': 0, '401': 0,
@@ -29,11 +28,9 @@ def print_metrics():
 
 
 """
-Read stdin
+Read and process Stdin
 """
-if __name__ == "__main__":
-
-    try:
+try:
         for line in sys.stdin:
 
             total_size += int(line.split()[8])
@@ -46,7 +43,7 @@ if __name__ == "__main__":
 
             count += 1
 
-    except KeyboardInterrupt:
+except KeyboardInterrupt:
 
-        print_metrics()
-        sys.exit(0)
+    print_metrics()
+    sys.exit(0)
