@@ -1,8 +1,11 @@
 #!/usr/bin/python3
-# Script that reads stdin line by line and computes metrics.
-# After every 10 lines and/or a keyboard interruption (CTRL + C), print these
-# statistics from the beginning: Total file size and number of lines by status code.
-# excecute: ./0-generator.py | ./0-stats.py
+"""
+Script that reads stdin line by line and computes metrics.
+After every 10 lines and/or a keyboard interruption (CTRL + C),
+print these statistics from the beginning: Total file size
+and number of lines by status code.
+excecute: ./0-generator.py | ./0-stats.py
+"""
 import sys
 
 
@@ -13,6 +16,9 @@ status_code = {'200': 0, '301': 0, '400': 0, '401': 0,
 
 
 def print_metrics():
+    """
+    Method to print the statistics from the beginning
+    """
 
     print(f'File size: {total_size}')
 
@@ -22,6 +28,9 @@ def print_metrics():
             print(f'{key}: {value}')
 
 
+"""
+Read stdin
+"""
 try:
 
     for line in sys.stdin:
