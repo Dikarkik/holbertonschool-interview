@@ -18,7 +18,7 @@ def print_metrics(total_size, status_code):
         if value > 0:
             print("{}: {}".format(key, value))
 
-count = 1
+count = 0
 total_size = 0
 status_code = {'200': 0, '301': 0, '400': 0, '401': 0,
                '403': 0, '404': 0, '405': 0, '500': 0}
@@ -31,10 +31,11 @@ try:
         status_code[line.split()[7]] += 1
 
         # print metrics every 10 lines
+        count += 1
         if (count % 10 == 0):
             print_metrics(total_size, status_code)
 
-        count += 1
+    print_metrics(total_size, status_code)
 
 except KeyboardInterrupt:
     print_metrics(total_size, status_code)
