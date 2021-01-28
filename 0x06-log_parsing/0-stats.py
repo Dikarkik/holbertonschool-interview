@@ -26,9 +26,18 @@ def print_metrics():
 try:
     for line in sys.stdin:
 
-        total_size += int(line.split()[-1])
+        try:
+            code = line.split()[-2]
+            if code in status_code.keys():
+                status_code[code] += 1
+        except BaseException:
+            pass
 
-        status_code[line.split()[-2]] += 1
+        try:
+            size = line.split()[-1]
+            total_size += int(size)
+        except BaseException:
+            pass
 
         # print metrics every 10 lines
         count += 1
