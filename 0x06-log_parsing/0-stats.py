@@ -12,11 +12,11 @@ import sys
 def print_metrics(total_size, status_code):
     """Method to print the statistics from the beginning"""
 
-    print(f'File size: {total_size}')
+    print("File size: {}".format(total_size))
 
     for key, value in status_code.items():
         if value > 0:
-            print(f'{key}: {value}')
+            print("{}: {}".format(key, value))
 
 count = 1
 total_size = 0
