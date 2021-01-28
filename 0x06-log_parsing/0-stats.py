@@ -24,18 +24,18 @@ status_code = {'200': 0, '301': 0, '400': 0, '401': 0,
                '403': 0, '404': 0, '405': 0, '500': 0}
 
 try:
-        for line in sys.stdin:
+    for line in sys.stdin:
 
-            total_size += int(line.split()[8])
+        total_size += int(line.split()[8])
 
-            status_code[line.split()[7]] += 1
+        status_code[line.split()[7]] += 1
 
-            # print metrics every 10 lines
-            if (count % 10 == 0):
-                print_metrics(total_size, status_code)
+        # print metrics every 10 lines
+        if (count % 10 == 0):
+            print_metrics(total_size, status_code)
 
-            count += 1
+        count += 1
 
 except KeyboardInterrupt:
     print_metrics(total_size, status_code)
-    sys.exit(0)
+    raise
