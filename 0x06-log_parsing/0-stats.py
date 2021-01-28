@@ -8,28 +8,21 @@ excecute: ./0-generator.py | ./0-stats.py
 """
 import sys
 
+
+def print_metrics(total_size, status_code):
+    """Method to print the statistics from the beginning"""
+
+    print(f'File size: {total_size}')
+
+    for key, value in status_code.items():
+        if value > 0:
+            print(f'{key}: {value}')
+
 count = 1
 total_size = 0
 status_code = {'200': 0, '301': 0, '400': 0, '401': 0,
                '403': 0, '404': 0, '405': 0, '500': 0}
 
-
-def print_metrics():
-    """
-    Method to print the statistics from the beginning
-    """
-
-    print(f'File size: {total_size}')
-
-    for key, value in status_code.items():
-
-        if value > 0:
-            print(f'{key}: {value}')
-
-
-"""
-Read and process Stdin
-"""
 try:
         for line in sys.stdin:
 
@@ -39,11 +32,10 @@ try:
 
             # print metrics every 10 lines
             if (count % 10 == 0):
-                print_metrics()
+                print_metrics(total_size, status_code)
 
             count += 1
 
 except KeyboardInterrupt:
-
-    print_metrics()
+    print_metrics(total_size, status_code)
     sys.exit(0)
