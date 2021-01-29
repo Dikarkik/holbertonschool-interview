@@ -19,7 +19,7 @@ def print_metrics():
 
     print("File size: {}".format(total_size))
 
-    for key, value in status_code.items():
+    for key, value in sorted(status_code.items()):
         if value > 0:
             print("{}: {}".format(key, value))
 
