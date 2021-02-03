@@ -21,7 +21,7 @@ int check_cycle(listint_t *list)
 		/* move node_2 */
 		jumps = 0;
 
-		for (jumps = 0; jumps < 4; jumps++)
+		for (jumps = 0; jumps < 2; jumps++)
 			if (node_2 != NULL)
 				node_2 = node_2->next;
 
