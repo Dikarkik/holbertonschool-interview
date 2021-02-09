@@ -18,10 +18,7 @@ void get_numbers(unsigned long n, int *numbers, int *index);
  */
 int is_palindrome(unsigned long n)
 {
-	int numbers[19] = {0, 0, 0, 0, 0,
-					   0, 0, 0, 0, 0,
-					   0, 0, 0, 0, 0,
-					   0, 0, 0, 0};
+	int numbers[19] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	int index = 0;
 	int left, right;
 
