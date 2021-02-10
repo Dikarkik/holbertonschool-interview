@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "palindrome.h"
 
 void get_numbers(unsigned long n, int *numbers, int *index);
