@@ -30,13 +30,13 @@ int is_palindrome(unsigned long n)
 	while (left < right)
 	{
 		if (numbers[left] != numbers[right])
-			return (EXIT_FAILURE);
+			return (0);
 
 		left++;
 		right--;
 	}
 
-	return (EXIT_SUCCESS);
+	return (1);
 }
 
 /**
