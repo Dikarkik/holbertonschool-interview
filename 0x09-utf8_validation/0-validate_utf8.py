@@ -7,10 +7,6 @@ Each integer represents 1 byte of data.
 
 
 def validUTF8(data):
-
-    if len(data) == 0:
-        return False
-
     pending_segments = 0
 
     for n in data:
