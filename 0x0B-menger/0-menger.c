@@ -108,10 +108,7 @@ void print_matrix(char **matrix, int size)
 	int y;
 
 	for (y = 0; y < size; y++)
-	{
-		printf("%s", matrix[y]);
-		printf("\n");
-	}
+		printf("%s\n", matrix[y]);
 }
 
 /**
