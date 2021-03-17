@@ -14,7 +14,7 @@ def print_queens_pos(size, queens_pos):
     for n in range(size):
         print(list(queens_pos[n]), end='')
         if n < size - 1:
-            print(', ', end = '')
+            print(', ', end='')
 
     print(']')
 
