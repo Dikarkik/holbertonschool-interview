@@ -7,9 +7,16 @@ queens on an N×N chessboard.
 import sys
 
 
-def print_queens_pos(queens_pos):
-    # TO DO: print like lists
-    print(queens_pos)
+def print_queens_pos(size, queens_pos):
+
+    print('[', end='')
+
+    for n in range(size):
+        print(list(queens_pos[n]), end='')
+        if n < size - 1:
+            print(', ', end = '')
+
+    print(']')
 
 
 def filter(new_queen, queens_pos):
@@ -33,7 +40,7 @@ def place_queens(n, queens_pos):
             new_queens_pos = queens_pos + (new_queen,)
 
             if len(new_queens_pos) is n:
-                print_queens_pos(new_queens_pos)
+                print_queens_pos(n, new_queens_pos)
             else:
                 place_queens(n, new_queens_pos)
 
@@ -45,5 +52,19 @@ def n_queens(n):
 
 
 if __name__ == "__main__":
-    # TO DO: check parameters
+
+    if len(sys.argv) != 2:
+        print("Usage: nqueens N")
+        exit(1)
+
+    try:
+        int(sys.argv[1])
+    except:
+        print("N must be a number")
+        exit(1)
+
+    if int(sys.argv[1]) < 4:
+        print("N must be at least 4")
+        exit(1)
+
     n_queens(int(sys.argv[1]))
