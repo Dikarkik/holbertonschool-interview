@@ -19,9 +19,9 @@
  */
 avl_t *sorted_array_to_avl(int *array, size_t size)
 {
-	avl_t *head;
+	avl_t *head = NULL;
 
-	if (array == NULL)
+	if (array == NULL || size == 0)
 		return (NULL);
 
 	head = recursion(0, size - 1, NULL, array);
@@ -43,11 +43,13 @@ avl_t *sorted_array_to_avl(int *array, size_t size)
 avl_t *recursion(int i_left, int i_right, avl_t *parent, int *array)
 {
 	int i_middle;
-	avl_t *node;
+	avl_t *node = NULL;
 
 	i_middle = (i_left + i_right) / 2;
 
 	node = create_node(array[i_middle], parent);
+	if (node == NULL)
+		return (NULL);
 
 	if (i_left <= i_middle - 1)
 		node->left = recursion(i_left, i_middle - 1, node, array);
@@ -70,6 +72,8 @@ avl_t *create_node(int num, avl_t *parent)
 	avl_t *node;
 
 	node = malloc(sizeof(avl_t));
+	if(node == NULL)
+		return (NULL);
 
 	node->n = num;
 	node->left = NULL;
@@ -77,6 +81,8 @@ avl_t *create_node(int num, avl_t *parent)
 
 	if (parent != NULL)
 		node->parent = parent;
+	else
+		node->parent = NULL;
 
 	return (node);
 }
