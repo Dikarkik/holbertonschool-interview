@@ -1,8 +1,4 @@
-#include <stdlib.h>
 #include "binary_trees.h"
-
-avl_t *recursion(int i_left, int i_right, avl_t *parent, int *array);
-avl_t *create_node(int num, avl_t *parent);
 
 /**
  * sorted_array_to_avl - builds an AVL tree from an array

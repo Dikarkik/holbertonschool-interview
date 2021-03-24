@@ -1,6 +1,7 @@
 #ifndef _BINARY_TREES_H_
 #define _BINARY_TREES_H_
 
+#include <stdlib.h>
 #include <stddef.h>
 
 /**
@@ -20,6 +21,9 @@ typedef struct binary_tree_s
 } binary_tree_t, avl_t;
 
 avl_t *sorted_array_to_avl(int *array, size_t size);
+avl_t *recursion(int i_left, int i_right, avl_t *parent, int *array);
+avl_t *create_node(int num, avl_t *parent);
+
 void binary_tree_print(const binary_tree_t *);
 
 #endif /* _BINARY_TREES_H_ */
