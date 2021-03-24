@@ -24,7 +24,7 @@ avl_t *sorted_array_to_avl(int *array, size_t size)
 	if (array == NULL || size == 0)
 		return (NULL);
 
-	head = recursion(0, size - 1, NULL, array);
+	head = add_middle_value(0, size - 1, NULL, array);
 
 	return (head);
 }
@@ -40,7 +40,7 @@ avl_t *sorted_array_to_avl(int *array, size_t size)
  *
  * Return: pointer to the new node
  */
-avl_t *recursion(int i_left, int i_right, avl_t *parent, int *array)
+avl_t *add_middle_value(int i_left, int i_right, avl_t *parent, int *array)
 {
 	int i_middle;
 	avl_t *node = NULL;
@@ -52,9 +52,9 @@ avl_t *recursion(int i_left, int i_right, avl_t *parent, int *array)
 		return (NULL);
 
 	if (i_left <= i_middle - 1)
-		node->left = recursion(i_left, i_middle - 1, node, array);
+		node->left = add_middle_value(i_left, i_middle - 1, node, array);
 	if (i_right >= i_middle + 1)
-		node->right = recursion(i_middle + 1, i_right, node, array);
+		node->right = add_middle_value(i_middle + 1, i_right, node, array);
 
 	return (node);
 }
