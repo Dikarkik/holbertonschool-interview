@@ -30,7 +30,7 @@ avl_t *sorted_array_to_avl(int *array, size_t size)
 }
 
 /**
- * recursion - Method to define the next node of the tree.
+ * add_middle_value - Method to define the next node of the tree.
  * Then, call 'recursion' for left and right children.
  *
  * @i_left: index range from left
