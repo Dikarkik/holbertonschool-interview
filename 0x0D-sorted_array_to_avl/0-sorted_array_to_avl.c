@@ -72,7 +72,7 @@ avl_t *create_node(int num, avl_t *parent)
 	avl_t *node;
 
 	node = malloc(sizeof(avl_t));
-	if(node == NULL)
+	if (node == NULL)
 		return (NULL);
 
 	node->n = num;
