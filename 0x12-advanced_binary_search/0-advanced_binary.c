@@ -45,7 +45,7 @@ int binary_search(int *array, int value, int left, int right)
 
 	print_subarray(array, left, right);
 
-	if (left == right && array[middle] != value)
+	if (left == right && array[left] != value)
 		return (-1);
 
 	if (array[middle] == value)
