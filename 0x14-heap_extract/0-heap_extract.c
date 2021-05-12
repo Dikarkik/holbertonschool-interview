@@ -32,7 +32,8 @@ int heap_extract(heap_t **root)
 
 	replace_and_delete_root(root, last_leaf);
 
-	heapify_root(root);
+	if (*root)
+		heapify_root(root);
 
 	return (max_value);
 }
@@ -80,9 +81,11 @@ void get_last_leaf(heap_t *node, int *stop_recursion,
 
 	/* if 'node' isn't a leaf */
 	if (node->left)
-		get_last_leaf(node->left, stop_recursion, last_leaf, max_depth, current_depth + 1);
+		get_last_leaf(node->left, stop_recursion, last_leaf,
+					  max_depth, current_depth + 1);
 	if (node->right)
-		get_last_leaf(node->right, stop_recursion, last_leaf, max_depth, current_depth + 1);
+		get_last_leaf(node->right, stop_recursion, last_leaf,
+					  max_depth, current_depth + 1);
 }
 
 /**
@@ -94,6 +97,14 @@ void get_last_leaf(heap_t *node, int *stop_recursion,
 void replace_and_delete_root(heap_t **root, heap_t *last_leaf)
 {
 	heap_t *old_root = *root;
+
+	/* if the last_leaf is the root */
+	if (last_leaf == *root)
+	{
+		*root = NULL;
+		free(old_root);
+		return;
+	}
 
 	/* clean child pointer in last_leaf->parent before go away */
 	if (last_leaf == last_leaf->parent->right)
@@ -108,8 +119,10 @@ void replace_and_delete_root(heap_t **root, heap_t *last_leaf)
 	*root = last_leaf;
 
 	/* update parent pointer in root childrens */
-	(*root)->left->parent = *root;
-	(*root)->right->parent = *root;
+	if ((*root)->left)
+		(*root)->left->parent = *root;
+	if ((*root)->right)
+		(*root)->right->parent = *root;
 
 	free(old_root);
 }
@@ -132,7 +145,8 @@ void heapify_root(heap_t **root)
 			break;
 
 		/* stops when there are two childs but isn't necessary to swap */
-		if ((node_1->left && node_1->right) && (node_1->n >= node_1->left->n && node_1->n >= node_1->right->n))
+		if ((node_1->left && node_1->right) &&
+			(node_1->n >= node_1->left->n && node_1->n >= node_1->right->n))
 			break;
 
 		/* stops when there are one child but isn't necessary to swap */
@@ -146,7 +160,7 @@ void heapify_root(heap_t **root)
 			node_2 = node_1->left;
 
 		/* if must swap right child */
-		else if (node_1->right != NULL && node_1->left->n < node_1->right->n)
+		else if (node_1->right != NULL && node_1->left->n <= node_1->right->n)
 			node_2 = node_1->right;
 
 		if (is_first_iteration)
@@ -172,7 +186,6 @@ void swap_nodes(heap_t *node_1, heap_t *node_2)
 
 	left_grandson = node_2->left;
 	right_grandson = node_2->right;
-
 	/* node_2 parent */
 	if (node_1->parent == NULL)
 		node_2->parent = NULL;
@@ -184,8 +197,7 @@ void swap_nodes(heap_t *node_1, heap_t *node_2)
 			node_2->parent->left = node_2;
 		else
 			node_2->parent->right = node_2;
-		}
-
+	}
 	/* node_2 childs */
 	if (node_2 == node_1->left)
 	{
@@ -197,20 +209,16 @@ void swap_nodes(heap_t *node_1, heap_t *node_2)
 		node_2->left = node_1->left;
 		node_2->right = node_1;
 	}
-
 	if (node_2->left)
 		node_2->left->parent = node_2;
 	if (node_2->right)
 		node_2->right->parent = node_2;
-
 	/* node_1 parent */
 	node_1->parent = node_2;
-
 	/* node_1 childs */
 	node_1->left = left_grandson;
 	if (node_1->left)
 		node_1->left->parent = node_1;
-
 	node_1->right = right_grandson;
 	if (node_1->right)
 		node_1->right->parent = node_1;
