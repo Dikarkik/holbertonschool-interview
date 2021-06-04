@@ -13,13 +13,16 @@
  */
 listint_t *find_listint_loop(listint_t *head)
 {
-	listint_t *node_1 = head;
-	listint_t *node_2 = head;
+	listint_t *node_1 = NULL;
+	listint_t *node_2 = NULL;
 
-	node_1 = node_1->next;
+	if (head)
+		node_1 = head->next;
+	else
+		return (NULL);
 
-	if (node_2->next)
-		node_2 = node_2->next->next;
+	if (head->next)
+		node_2 = head->next->next;
 
 	while (node_1 != NULL && node_2 != NULL)
 	{
