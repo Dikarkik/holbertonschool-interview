@@ -3,7 +3,8 @@
 # Exercise: Lockboxes
 # Method that determines if all the boxes can be opened.
 # Details in README.md
-
+import sys
+print(sys.getrecursionlimit())
 
 def canUnlockAll(boxes):
 
