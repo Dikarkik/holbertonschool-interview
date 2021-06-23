@@ -16,6 +16,9 @@ def find_min(a, b):
 
 
 def makeChange(c, sum):
+
+    c.sort()
+
     # Storing total number of available coins:
     size = len(c)
 
@@ -41,6 +44,6 @@ def makeChange(c, sum):
                 arr[i][j] = find_min(1 + arr[i][j - c[i - 1]], arr[i - 1][j])
 
     if arr[size][sum] == math.inf:
-        return - 1
+        return -1
 
     return arr[size][sum]
