@@ -1,49 +1,50 @@
 #!/usr/bin/python3
 """
 Solution:
-https://www.educative.io/edpresso/coin-change-problem-1-in-javafinding-the-minimum-number-of-coins
+https://www.geeksforgeeks.org/find-minimum-number-of-coins-that-make-a-change/
 """
 
+# A Dynamic Programming based Python3 program to
+# find minimum of coins to make a given change V
+import sys
 
-import math
-
-
-def find_min(a, b):
-    if a <= b:
-        return a
-    else:
-        return b
+# m is size of coins array (number of
+# different coins)
 
 
-def makeChange(c, sum):
+def makeChange(coins, V):
 
-    c.sort()
+    m = len(coins)
 
-    # Storing total number of available coins:
-    size = len(c)
+    coins.sort()
 
-    # Declaring a 2-D list, filled with zeroes:
-    arr = [[0] * (sum + 1) for x in range(size + 1)]
+    # table[i] will be storing the minimum
+    # number of coins required for i value.
+    # So table[V] will have result
+    table = [0 for i in range(V + 1)]
 
-    # Initialising first column of list with 0
-    # because a sum of 0 can be made with zero coins:
-    for i in range(size + 1):
-        arr[i][0] = 0
+    # Base case (If given value V is 0)
+    table[0] = 0
 
-    # Initialising first row of list with +ve infinity
-    # because a sum cannot be made with 0 coins:
-    for j in range(sum + 1):
-        arr[0][j] = math.inf
+    # Initialize all table values as Infinite
+    for i in range(1, V + 1):
+        table[i] = sys.maxsize
 
-    # Using recursive solution:
-    for i in range(1, size + 1):
-        for j in range(1, sum + 1):
-            if c[i - 1] > j:
-                arr[i][j] = arr[i - 1][j]
-            else:
-                arr[i][j] = find_min(1 + arr[i][j - c[i - 1]], arr[i - 1][j])
+    # Compute minimum coins required
+    # for all values from 1 to V
+    for i in range(1, V + 1):
 
-    if arr[size][sum] == math.inf:
+        # Go through all coins smaller than i
+        for j in range(m):
+            if (coins[j] <= i):
+                sub_res = table[i - coins[j]]
+                if (sub_res != sys.maxsize and
+                        sub_res + 1 < table[i]):
+                    table[i] = sub_res + 1
+
+    if table[V] == sys.maxsize:
         return -1
 
-    return arr[size][sum]
+    return table[V]
+
+# This code is contributed by ita_c
