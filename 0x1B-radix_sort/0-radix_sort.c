@@ -1,4 +1,5 @@
 #include "sort.h"
+
 /**
  * num_digits - FInd the number of digits of a number
  * @number: Number to find the digits
